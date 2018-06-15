@@ -3,3 +3,45 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.Header {
+  /* text-align: center; */
+  padding: 25px;
+  /* border-bottom: 1px solid black; */
+  /* margin-bottom: 2rem; */
+  /* background: #00d1b2; */
+}
+
+.Dashboard {
+  /* margin-top: .5rem; */
+}
+
+.label {
+  text-align: left;
+}
+
+.header-icon {
+  color: #00d1b2;
+}
+
+.field {
+  margin: 50px 0;
+}
+
+.Note {
+  margin: 20px auto;
+  width: 75%;
+}
+
+.add-note-container {
+  width: 75%;
+  margin: 0 auto;
+}
+
+/* .note-button {
+  color: #00d1b2;
+}
+
+.note-button:hover {
+  color: #fff;
+} */
