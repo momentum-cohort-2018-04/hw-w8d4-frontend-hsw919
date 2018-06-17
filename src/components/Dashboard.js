@@ -15,7 +15,7 @@ class Dashboard extends Component {
   }
 
   componentDidMount () {
-    const notesRef = firebase.database().ref(`notes/user/${this.props.user.uid}`)
+    const notesRef = firebase.database().ref(`notes/users/${this.props.user.uid}`)
     notesRef.on('value', (snapshot) => {
       let notes = snapshot.val()
       let newState = []

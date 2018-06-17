@@ -18,7 +18,7 @@ class EditNote extends Component {
   }
 
   componentDidMount () {
-    const notesRef = firebase.database().ref(`notes/user/${this.props.user.uid}/${this.props.match.params.noteId}`)
+    const notesRef = firebase.database().ref(`notes/users/${this.props.user.uid}/${this.props.match.params.noteId}`)
     notesRef.once('value').then(snapshot => {
       console.log(snapshot.val())
       let note = snapshot.val()
@@ -41,7 +41,7 @@ class EditNote extends Component {
   handleSubmit (e) {
     e.preventDefault()
     if (this.state.title && this.state.text) {
-      const notesRef = firebase.database().ref(`notes/user/${this.props.user.uid}/${this.props.match.params.noteId}`)
+      const notesRef = firebase.database().ref(`notes/users/${this.props.user.uid}/${this.props.match.params.noteId}`)
       notesRef.set({
         title: this.state.title,
         text: this.state.text,

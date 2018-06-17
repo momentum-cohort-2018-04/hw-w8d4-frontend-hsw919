@@ -26,7 +26,7 @@ class AddNote extends Component {
   handleSubmit (e) {
     e.preventDefault()
     if (this.state.title && this.state.text) {
-      const notesRef = firebase.database().ref(`notes/user/${this.props.user.uid}`)
+      const notesRef = firebase.database().ref(`notes/users/${this.props.user.uid}`)
       const note = {
         title: this.state.title,
         text: this.state.text,
