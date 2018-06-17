@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import { Title, Icon, Button } from 'bloomer'
 // import { Route } from 'react-router-dom'
-import firebase, { auth, provider } from './firebase.js'
+import { auth } from './firebase.js'
 
 class Header extends Component {
   constructor () {

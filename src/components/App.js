@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import './App.css'
 import { Container } from 'bloomer'
-import { Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import Header from './Header'
 import Dashboard from './Dashboard'
 import AddNote from './AddNote'
 import EditNote from './EditNote'
 import Login from './Login'
-import firebase, { auth, provider } from './firebase.js'
+import { auth } from './firebase.js'
 
 class App extends Component {
   constructor () {
@@ -46,12 +46,18 @@ class App extends Component {
         <Container hasTextAlign='centered'>
           <Header logoutUser={this.logoutUser} user={this.state.user} />
           {this.state.user
-            ? <Route exact path='/' component={Dashboard} />
+            ? <Route exact path='/' render={props => (
+              <Dashboard {...props} user={this.state.user} />
+            )} />
             : <Route path='/' render={props => (
               <Login {...props} updateUser={this.updateUser} />
             )} />}
-          <Route path='/add-note' component={AddNote} />
-          <Route path='/note/edit/:noteId' component={EditNote} />
+          <Route path='/add-note' render={props => (
+            <AddNote {...props} user={this.state.user} />
+          )} />
+          <Route path='/note/edit/:noteId' render={props => (
+            <EditNote {...props} user={this.state.user} />
+          )} />
         </Container>
       </div>
     )

@@ -11,7 +11,7 @@ class Note extends Component {
   }
 
   handleDelete () {
-    const noteRef = firebase.database().ref(`/notes/${this.props.note.id}`)
+    const noteRef = firebase.database().ref(`/notes/user/${this.props.user.uid}/${this.props.note.id}`)
     noteRef.remove()
   }
 

@@ -15,9 +15,8 @@ class Dashboard extends Component {
   }
 
   componentDidMount () {
-    const notesRef = firebase.database().ref('notes')
+    const notesRef = firebase.database().ref(`notes/user/${this.props.user.uid}`)
     notesRef.on('value', (snapshot) => {
-      // console.log(snapshot.val())
       let notes = snapshot.val()
       let newState = []
       for (let note in notes) {
@@ -35,7 +34,6 @@ class Dashboard extends Component {
   }
 
   render () {
-    console.log(this.props)
     return (
       <div className='Dashboard'>
         <Link to={'/add-note'} className='note-button'>
@@ -46,7 +44,7 @@ class Dashboard extends Component {
           <div className='notes-container'>
             {this.state.notes.map((note, idx) => (
               <div key={idx}>
-                <Note note={note} {...this.props} />
+                <Note note={note} {...this.props} user={this.props.user} />
               </div>
             ))}
           </div>

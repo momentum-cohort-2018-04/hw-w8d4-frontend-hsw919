@@ -18,17 +18,7 @@ class EditNote extends Component {
   }
 
   componentDidMount () {
-    // const notesRef = firebase.database().ref(`notes/${this.props.match.params.noteId}`)
-    // notesRef.on('value', (snapshot) => {
-    //   console.log(snapshot.val())
-    //   let note = snapshot.val()
-    //   this.setState({
-    //     title: note.title,
-    //     text: note.text,
-    //     tags: note.tags
-    //   })
-    // })
-    const notesRef = firebase.database().ref(`notes/${this.props.match.params.noteId}`)
+    const notesRef = firebase.database().ref(`notes/user/${this.props.user.uid}/${this.props.match.params.noteId}`)
     notesRef.once('value').then(snapshot => {
       console.log(snapshot.val())
       let note = snapshot.val()
@@ -51,7 +41,7 @@ class EditNote extends Component {
   handleSubmit (e) {
     e.preventDefault()
     if (this.state.title && this.state.text) {
-      const notesRef = firebase.database().ref(`notes/${this.props.match.params.noteId}`)
+      const notesRef = firebase.database().ref(`notes/user/${this.props.user.uid}/${this.props.match.params.noteId}`)
       notesRef.set({
         title: this.state.title,
         text: this.state.text,
