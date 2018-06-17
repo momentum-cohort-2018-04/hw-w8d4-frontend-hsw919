@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
-import { Button } from 'bloomer'
+import { Button, Title } from 'bloomer'
 import { Link } from 'react-router-dom'
 // import Header from './Header'
 import firebase from './firebase'
@@ -35,20 +35,27 @@ class Dashboard extends Component {
   }
 
   render () {
-    // console.log(this.state.notes)
+    // console.log(this.props)
     return (
       <div className='Dashboard'>
         <Link to={'/add-note'} className='note-button'>
           <Button isOutlined isColor='primary' isSize='medium'>Add Note</Button>
         </Link>
 
-        <div className='notes-container'>
-          {this.state.notes.map((note, idx) => (
-            <div key={idx}>
-              <Note note={note} />
-            </div>
-          ))}
-        </div>
+        {this.state.notes.length !== 0 ? (
+          <div className='notes-container'>
+            {this.state.notes.map((note, idx) => (
+              <div key={idx}>
+                <Note note={note} {...this.props} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className='no-notes'>
+            <Title isSize={3}>You have no notes</Title>
+          </div>
+        )}
+
       </div>
     )
   }

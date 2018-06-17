@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { Box, Subtitle, Button } from 'bloomer'
-// import { Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import firebase from './firebase'
 
 class Note extends Component {
@@ -24,7 +24,9 @@ class Note extends Component {
           <Subtitle isSize={3}>{note.title}</Subtitle>
           <p>{note.text}</p>
           <p>tags: {note.tags}</p>
-          <Button isColor='primary' isOutlined>Edit</Button>
+          <Link to={`/note/edit/${note.id}`}>
+            <Button isColor='primary' isOutlined>Edit</Button>
+          </Link>
           <Button isColor='danger' isOutlined onClick={this.handleDelete}>Delete</Button>
         </Box>
       </div>

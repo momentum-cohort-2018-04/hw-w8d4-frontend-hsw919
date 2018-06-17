@@ -33,9 +33,14 @@ body {
   width: 75%;
 }
 
-.AddNote {
+.AddNote,
+.EditNote {
   width: 75%;
   margin: 0 auto;
+}
+
+.no-notes {
+  margin-top: 10rem;
 }
 
 /* .note-button {
