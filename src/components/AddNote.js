@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { Subtitle, Field, Label, Control, Input, TextArea, Button, Box } from 'bloomer'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import firebase from './firebase'
 
 class AddNote extends Component {
@@ -44,42 +44,46 @@ class AddNote extends Component {
   }
 
   render () {
-    return (
-      <div className='AddNote'>
-        <Box>
-          <Subtitle isSize={3}>Add Note</Subtitle>
-          <form onSubmit={this.handleSubmit} className='add-note-container'>
-            <Field className='field'>
-              <Label isSize='medium' className='label'>Title</Label>
-              <Control>
-                <Input type='text' name='title' placeholder='Title' onChange={this.handleChange} />
-              </Control>
-            </Field>
+    if (this.props.user) {
+      return (
+        <div className='AddNote'>
+          <Box>
+            <Subtitle isSize={3}>Add Note</Subtitle>
+            <form onSubmit={this.handleSubmit} className='add-note-container'>
+              <Field className='field'>
+                <Label isSize='medium' className='label'>Title</Label>
+                <Control>
+                  <Input type='text' name='title' placeholder='Title' onChange={this.handleChange} />
+                </Control>
+              </Field>
 
-            <Field className='field'>
-              <Label isSize='medium' className='label'>Text</Label>
-              <Control>
-                <TextArea placeholder='Text' name='text' onChange={this.handleChange} />
-              </Control>
-            </Field>
+              <Field className='field'>
+                <Label isSize='medium' className='label'>Text</Label>
+                <Control>
+                  <TextArea placeholder='Text' name='text' onChange={this.handleChange} />
+                </Control>
+              </Field>
 
-            <Field className='field'>
-              <Label isSize='medium' className='label'>Tags(Optional)</Label>
-              <Control>
-                <Input type='text' name='tags' placeholder='Tags' onChange={this.handleChange} />
-              </Control>
-            </Field>
+              <Field className='field'>
+                <Label isSize='medium' className='label'>Tags(Optional)</Label>
+                <Control>
+                  <Input type='text' name='tags' placeholder='Tags' onChange={this.handleChange} />
+                </Control>
+              </Field>
 
-            <Field>
-              <Button isColor='primary' type='submit'>Submit</Button>
-              <Link to={'/'}>
-                <Button isColor='danger'>Cancel</Button>
-              </Link>
-            </Field>
-          </form>
-        </Box>
-      </div>
-    )
+              <Field>
+                <Button isColor='primary' type='submit'>Submit</Button>
+                <Link to={'/'}>
+                  <Button isColor='danger'>Cancel</Button>
+                </Link>
+              </Field>
+            </form>
+          </Box>
+        </div>
+      )
+    } else {
+      return <Redirect to={'/'} />
+    }
   }
 }
 
